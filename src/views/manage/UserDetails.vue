@@ -21,7 +21,7 @@
 <script>
 import usersData from './UsersData'
 export default {
-  name: 'User',
+  name: 'userDetails',
   props: {
     caption: {
       type: String,

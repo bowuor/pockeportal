@@ -3,7 +3,7 @@
     <b-col cols="12" lg="6">
       <b-card no-header>
         <template slot="header">
-          User id:  {{ $route.params.id }}
+          ID/Passport Number :  {{ $route.params.id }}
         </template>
         <b-table striped small fixed responsive="sm" :items="items($route.params.id)" :fields="fields">
           <template slot="value" slot-scope="data">
@@ -11,7 +11,8 @@
           </template>
         </b-table>
         <template slot="footer">
-          <b-button @click="goBack">Back</b-button>
+          <b-button @click="goBack">Back</b-button>&nbsp;
+          <b-button class="btn-success" @click="edit">Edit</b-button>
         </template>
       </b-card>
     </b-col>
@@ -19,21 +20,21 @@
 </template>
 
 <script>
-import usersData from './UsersData'
+import parentsData from './ParentsData'
 export default {
-  name: 'User',
+  name: 'Parent',
   props: {
     caption: {
       type: String,
-      default: 'Email'
+      default: 'Id Number'
     },
   },
   data: () => {
     return {
-      items: (idNumber) => {
-        const user = usersData.find( user => user.idNumber.toString() === idNumber)
-        const userDetails = user ? Object.entries(user) : [['id', 'Not found']]
-        return userDetails.map(([key, value]) => {return {key: key, value: value}})
+      items: (id_number) => {
+        const parent = parentsData.find( parent => parent.id_number.toString() === id_number)
+        const parentDetails = parent ? Object.entries(parent) : [['Id Number', 'Not found']]
+        return parentDetails.map(([key, value]) => {return {key: key, value: value}})
       },
       fields: [
         {key: 'key'},
@@ -44,7 +45,10 @@ export default {
   methods: {
     goBack() {
       this.$router.go(-1)
-      // this.$router.replace({path: '/users'})
+      //this.$router.replace({path: '/schools'})
+    },
+    edit() {
+
     }
   }
 }

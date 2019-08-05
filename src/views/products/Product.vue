@@ -3,7 +3,7 @@
     <b-col cols="12" lg="6">
       <b-card no-header>
         <template slot="header">
-          User id:  {{ $route.params.id }}
+          School ID:  {{ $route.params.id }}
         </template>
         <b-table striped small fixed responsive="sm" :items="items($route.params.id)" :fields="fields">
           <template slot="value" slot-scope="data">
@@ -19,21 +19,21 @@
 </template>
 
 <script>
-import usersData from './UsersData'
+import itemsData from './ItemsData'
 export default {
-  name: 'User',
+  name: 'Items',
   props: {
     caption: {
       type: String,
-      default: 'Email'
+      default: 'Item code'
     },
   },
   data: () => {
     return {
-      items: (idNumber) => {
-        const user = usersData.find( user => user.idNumber.toString() === idNumber)
-        const userDetails = user ? Object.entries(user) : [['id', 'Not found']]
-        return userDetails.map(([key, value]) => {return {key: key, value: value}})
+      items: (code) => {
+        const item = itemsData.find( item => item.code.toString() === code)
+        const itemDetails = item ? Object.entries(item) : [['code', 'Not found']]
+        return itemDetails.map(([key, value]) => {return {key: key, value: value}})
       },
       fields: [
         {key: 'key'},
@@ -44,7 +44,7 @@ export default {
   methods: {
     goBack() {
       this.$router.go(-1)
-      // this.$router.replace({path: '/users'})
+      //this.$router.replace({path: '/schools'})
     }
   }
 }

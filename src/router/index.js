@@ -4,6 +4,34 @@ import Router from 'vue-router'
 // Containers
 const DefaultContainer = () => import('@/containers/DefaultContainer')
 
+// Register
+const RegisterAccount = () => import('@/views/register/RegisterAccount')
+const RegisterSchool = () => import('@/views/register/RegisterSchool')
+const RegisterProduct = () => import('@/views/register/RegisterProduct')
+const RegisterUser = () => import('@/views/register/RegisterUser')
+
+//manage
+const ViewSchools = () => import('@/views/schools/ViewSchools')
+const ViewParents = () => import('@/views/parents/ViewParents')
+const ViewAccounts = () => import('@/views/accounts/ViewAccounts')
+//const ViewStudents = () => import('@/views/manage/ViewStudents')
+const ViewProducts = () => import('@/views/products/ViewProducts')
+const ViewUsers = () => import('@/views/manage/ViewUsers')
+
+// Schools
+const ViewSchool = () => import('@/views/schools/School')
+
+// Parents
+const RegisterParent = () => import('@/views/parents/RegisterParent')
+const ViewParent = () => import('@/views/parents/Parent')
+
+// Students
+const RegisterStudent = () => import('@/views/accounts/RegisterAccount')
+const ViewAccount = () => import('@/views/accounts/Account')
+
+// Items
+const ViewProduct = () => import('@/views/products/Product')
+
 // Views
 const Dashboard = () => import('@/views/Dashboard')
 
@@ -55,8 +83,8 @@ const Login = () => import('@/views/pages/Login')
 const Register = () => import('@/views/pages/Register')
 
 // Users
-const Users = () => import('@/views/users/Users')
 const User = () => import('@/views/users/User')
+const Users = () => import('@/views/users/Users')
 
 Vue.use(Router)
 
@@ -75,6 +103,151 @@ export default new Router({
           path: 'dashboard',
           name: 'Dashboard',
           component: Dashboard
+        },
+        {
+          path: 'Register',
+          meta: { label: 'Register'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: 'RegisterUser',
+              meta: { label: 'User'},
+              component: RegisterUser,
+            },
+            {
+              path: 'RegisterSchool',
+              meta: { label: 'School'},
+              component: RegisterSchool,
+            },
+            {
+              path: 'RegisterAccount',
+              meta: { label: 'Account'},
+              component: RegisterAccount,
+            },
+            {
+              path: 'RegisterProduct',
+              meta: { label: 'Product'},
+              component: RegisterProduct,
+            }
+          ]
+        },
+        {
+          path: 'Manage',
+          meta: { label: 'Manage'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: 'ViewUsers',
+              meta: { label: 'User'},
+              component: ViewUsers,
+            },
+            {
+              path: 'ViewSchools',
+              meta: { label: 'School'},
+              component: ViewSchools,
+            },
+            {
+              path: 'ViewAccounts',
+              meta: { label: 'Account'},
+              component: ViewAccounts,
+            },
+          ]
+        },
+        {
+          path: 'users',
+          meta: { label: 'Users'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              meta: { label: 'Manage User'},
+              component: Users,
+            },
+            {
+              path: ':id',
+              meta: { label: 'User Details'},
+              name: 'User',
+              component: User,
+            },
+          ]
+        },
+        {
+          path: 'schools',
+          meta: { label: 'Manage Schools'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: ViewSchools,
+            },
+            {
+              path: ':id',
+              meta: { label: 'Details'},
+              component: ViewSchool,
+            },
+          ]
+        },
+        {
+          path: 'parents',
+          meta: { label: 'Parents'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: ViewParents,
+            },
+            {
+              path: ':id',
+              meta: { label: 'Details'},
+              component: ViewParent,
+            },
+          ]
+        },
+        {
+          path: 'accounts',
+          meta: { label: 'Accounts'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: ViewAccounts,
+            },
+            {
+              path: ':id',
+              meta: { label: 'Details'},
+              component: ViewAccount,
+            },
+          ]
+        },
+        {
+          path: 'products',
+          meta: { label: 'Products'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: ViewProducts,
+            },
+            {
+              path: ':id',
+              meta: { label: 'Details'},
+              component: ViewProduct,
+            },
+          ]
         },
         {
           path: 'theme',
@@ -105,25 +278,6 @@ export default new Router({
           path: 'widgets',
           name: 'Widgets',
           component: Widgets
-        },
-        {
-          path: 'users',
-          meta: { label: 'Users'},
-          component: {
-            render (c) { return c('router-view') }
-          },
-          children: [
-            {
-              path: '',
-              component: Users,
-            },
-            {
-              path: ':id',
-              meta: { label: 'User Details'},
-              name: 'User',
-              component: User,
-            },
-          ]
         },
         {
           path: 'base',

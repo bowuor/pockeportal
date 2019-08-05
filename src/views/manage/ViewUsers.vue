@@ -2,34 +2,21 @@
   <b-row>
     <b-col cols="12" xl="12">
       <transition name="slide">
-      <b-card no-body class="card-accent-success">
-        <b-card-header>
-          <i class="fa fa-align-justify"></i>Users
-        </b-card-header>
-        <b-card-body>
-          <b-form-group class="col-sm-4" label-for="find">
-            <b-input-group>
-              <b-input-group-prepend>
-                <b-input-group-text>Find</b-input-group-text>
-              </b-input-group-prepend>
-              <b-form-input id="find" type="text"></b-form-input>
-            </b-input-group>
-          </b-form-group>
-          <b-table :hover="hover" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="rowClicked">
-            <template slot="idNumber" slot-scope="data">
-              {{data.item.idNumber}}
-            </template>
-            <template slot="surname" slot-scope="data">
-              {{data.item.surname}}
-            </template>
-            <template slot="status" slot-scope="data">
-              <b-badge :variant="getBadge(data.item.status)">{{data.item.status}}</b-badge>
-            </template>
-          </b-table>
-          <nav>
-            <b-pagination size="sm" :total-rows="getRowCount(items)" :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next" hide-goto-end-buttons/>
-          </nav>
-        </b-card-body>
+      <b-card :header="caption" class="card-accent-success">
+        <b-table :hover="hover" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="rowClicked">
+          <template slot="idNumber" slot-scope="data">
+            {{data.item.idNumber}}
+          </template>
+          <template slot="surname" slot-scope="data">
+            {{data.item.surname}}
+          </template>
+          <template slot="status" slot-scope="data">
+            <b-badge :variant="getBadge(data.item.status)">{{data.item.status}}</b-badge>
+          </template>
+        </b-table>
+        <nav>
+          <b-pagination size="sm" :total-rows="getRowCount(items)" :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next" hide-goto-end-buttons/>
+        </nav>
       </b-card>
       </transition>
     </b-col>
@@ -97,7 +84,7 @@ export default {
       return items.length
     },
     userLink (idNumber) {
-      return `users/${idNumber.toString()}`
+      return `user/${idNumber.toString()}`
     },
     rowClicked (item) {
       const userLink = this.userLink(item.idNumber)

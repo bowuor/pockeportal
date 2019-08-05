@@ -9,7 +9,7 @@
       <SidebarToggler class="d-md-down-none" display="lg" />
       <b-navbar-nav class="d-md-down-none">
         <b-nav-item class="px-3" to="/dashboard">Dashboard</b-nav-item>
-        <b-nav-item class="px-3" to="/users" exact>Users</b-nav-item>
+        <!-- <b-nav-item class="px-3" to="/users" exact>Users</b-nav-item> -->
         <b-nav-item class="px-3">Settings</b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
@@ -32,7 +32,8 @@
       <AppSidebar fixed>
         <SidebarHeader/>
         <SidebarForm/>
-        <SidebarNav :navItems="nav"></SidebarNav>
+        <SidebarNav :navItems="adminNav"></SidebarNav> 
+        <!--<SidebarNav :navItems="schoolNav"></SidebarNav> -->
         <SidebarFooter/>
         <SidebarMinimizer/>
       </AppSidebar>
@@ -50,19 +51,20 @@
     <TheFooter>
       <!--footer-->
       <div>
-        <a href="https://coreui.io">CoreUI</a>
-        <span class="ml-1">&copy; 2018 creativeLabs.</span>
+        <a href="https://coreui.io">Pockecard</a>
+        <span class="ml-1">&copy; 2019 webapp</span>
       </div>
       <div class="ml-auto">
-        <span class="mr-1">Powered by</span>
-        <a href="https://coreui.io">CoreUI for Vue</a>
+        <span class="mr-1">Powered by CoreUI</span>
+        <a href="https://coreui.io"></a>
       </div>
     </TheFooter>
   </div>
 </template>
 
 <script>
-import nav from '@/_nav'
+import admin_nav from '@/admin_nav'
+import school_nav from '@/school_nav'
 import { Header as AppHeader, SidebarToggler, Sidebar as AppSidebar, SidebarFooter, SidebarForm, SidebarHeader, SidebarMinimizer, SidebarNav, Aside as AppAside, AsideToggler, Footer as TheFooter, Breadcrumb } from '@coreui/vue'
 import DefaultAside from './DefaultAside'
 import DefaultHeaderDropdownAccnt from './DefaultHeaderDropdownAccnt'
@@ -87,7 +89,8 @@ export default {
   },
   data () {
     return {
-      nav: nav.items
+      adminNav: admin_nav.items,
+      schoolNav: school_nav.items
     }
   },
   computed: {
